@@ -1,0 +1,81 @@
+@mixin _displayFlex {
+    display: flex;
+}
+
+// 容器的属性
+@mixin _setFlexDirection($direction) {
+    flex-direction: $direction;
+}
+
+@mixin _setFlexWrap($wrap) {
+    flex-wrap: $wrap;
+}
+
+@mixin _setFlexFlow($flexFlow: row, $flexWrap: nowrap) {
+    @include _setFlexDirection($flexFlow);
+    @include _setFlexFlow($flexWrap);
+}
+
+@mixin _setJustifyContent($direcion) {
+    justify-content: $direcion;
+}
+
+@mixin _setAlignItem($direcion) {
+    align-items: $direcion;
+}
+
+@mixin _setAlignContent($direcion) {
+    align-content: $direcion;
+}
+
+// 项目的属性
+@mixin _setFlexGrow($rate) {
+    flex-grow: $rate;
+}
+
+@mixin _setFlexShrink($rate) {
+    flex-shrink: $rate;
+}
+
+@mixin _setFlexBasis($width) {
+    flex-basis: $width;
+}
+
+@mixin _setFlex($flexGrow: 0, $flexShrink: 1, $flexBasis: auto) {
+    @include _setFlexGrow($flexGrow);
+    @include _setFlexShrink($flexShrink);
+    @include _setFlexBasis($flexBasis);
+}
+
+@mixin _setOrder($order) {
+    order: $order;
+}
+
+@mixin _setAlignSelf($direction) {
+    align-self: $direction;
+}
+
+// 常用布局方式
+// 垂直居中
+@mixin verticalCenter {
+    @include _displayFlex();
+    @include _setJustifyContent(center);
+}
+
+// 水平居中
+@mixin horizonCenter {
+    @include _displayFlex();
+    @include _setAlignItem(center);
+}
+
+// 水平垂直居中
+@mixin allCenter {
+    @include _displayFlex();
+    @include _setJustifyContent(center);
+    @include _setAlignItem(center);
+}
+
+// 空间不够时元素宽高不收缩
+@mixin noShrink {
+    flex-shrink: 0;
+}
